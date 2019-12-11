@@ -2,24 +2,34 @@ import { http } from './config'
 
 export default{
     iniciar:() => {
-        return http.post('iniciar')
+        const formData = new FormData()
+        return http.post('iniciar',formData,{withCredentials: true})
     },
-    parar:() => {
-        return http.post('parar')
+    desativar:() => {
+        const formData = new FormData()
+
+        return http.post('desativar',formData,{withCredentials: true})
     },
     configADM:(host,user,password) => {
         const formData = new FormData()
         formData.append('host', host);
         formData.append('user', user);
         formData.append('password', password);
-        console.log(formData);
-        return http.post('configadm', formData)
+        return http.post('configadm', formData,{withCredentials: true})
     },
     configDEV:(user,host,nome_con,email) => {
-        return http.post('configdev')
+        const formData = new FormData()
+        formData.append('host', host);
+        formData.append('user', user);
+        formData.append('nome-con', nome_con);
+        formData.append('email', email);
+        return http.post('configdev', formData,{withCredentials: true})
     },
-    login:(user,login) => {
-        return http.post('login')
+    login:(email,password) => {
+        const formData = new FormData()
+        formData.append('user', email);
+        formData.append('password', password);
+        return http.post('login',formData,{withCredentials: true})
     },
     teste:() => {
         return http.get('teste')

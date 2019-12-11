@@ -81,7 +81,7 @@
 					</v-row>
 				</v-col>
 			</v-card>
-			<v-card width="500" class="mx-auto pa-12">
+			<v-card width="500" class="mx-auto pa-12" name="cardDEV">
 			<v-card-title class="justify-center">Conta de Desenvolvimento</v-card-title>
 				<v-col>
 					<v-row justify="center">
@@ -103,13 +103,22 @@
 						></v-text-field>
 					</v-row>
 					<v-row justify="center">
-						<v-textarea
-						v-model="formularioDEV.inputToken"
+						<v-text-field
+						v-model="formularioDEV.inputConnName"
 						outlined
-						name="token"
-						label="Token"
+						name="nome-conn"
+						label="Nome da conexão"
 						:disabled="formularioDEV.input"
-						></v-textarea>
+						></v-text-field>
+					</v-row>
+					<v-row justify="center">
+						<v-text-field
+						v-model="formularioDEV.inputEmail"
+						outlined
+						name="email"
+						label="Email"
+						:disabled="formularioDEV.input"
+						></v-text-field>
 					</v-row>
 					<v-row justify="space-between">
 						<v-btn 
@@ -130,6 +139,7 @@
 				</v-col>
 			</v-card>
         </v-row>
+		<v-divider></v-divider>
 		<v-row class="ma-12" justify="center">
 			<v-card>
 				<v-row justify="space-between">	

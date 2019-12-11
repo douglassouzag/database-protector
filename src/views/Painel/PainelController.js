@@ -17,8 +17,8 @@ export default {
           inputParar: true,
           inputHost: null,
           inputUser: null,
-          inputSenha: null,
-          inputToken: null,
+          inputEmail: null,
+          inputConnName: null,
           input: false,
         },
         formularioADM: {
@@ -27,7 +27,6 @@ export default {
           inputHost: null,
           inputUser: null,
           inputSenha: null,
-          inputToken: null,
           input: false,
         },
         formulatorioAPI:{
@@ -44,7 +43,7 @@ export default {
 
         Api.configADM(this.formularioADM.inputHost,this.formularioADM.inputUser,this.formularioADM.inputSenha).then(resposta =>{
           this.alertaErro.msg = resposta.data.erro;
-          this.alertaSucesso.msg = resposta.data.sucesso;
+          this.alertaSucesso.msg = resposta.data.msg;
         })
        },
        habilitarInputADM(){
@@ -56,6 +55,11 @@ export default {
         this.formularioDEV.input=true;
         this.formularioDEV.inputParar=false;
         this.formularioDEV.inputConfigurar=true;
+
+        Api.configDEV(this.formularioDEV.inputUser,this.formularioDEV.inputHost,this.formularioDEV.inputConnName,this.formularioDEV.inputEmail).then(resposta =>{
+          this.alertaErro.msg = resposta.data.erro;
+          this.alertaSucesso.msg = resposta.data.msg;
+        })
         },
         habilitarInputDEV(){
         this.formularioDEV.input=false;
@@ -65,10 +69,18 @@ export default {
         iniciar(){
           this.formulatorioAPI.botaoParar = true;
           this.formulatorioAPI.botaoLigar = false;
+          Api.iniciar().then(resposta =>{
+            this.alertaErro.msg = resposta.data.erro;
+            this.alertaSucesso.msg = resposta.data.msg;
+          })
         },
         parar(){
           this.formulatorioAPI.botaoParar = false;
           this.formulatorioAPI.botaoLigar = true;
+          Api.desativar().then(resposta =>{
+            this.alertaErro.msg = resposta.data.erro;
+            this.alertaSucesso.msg = resposta.data.msg;
+          })
         }
     },
 }
